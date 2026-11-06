@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-secrets"
+version = "0.1.0"
+description = "A backend-agnostic local secret inventory."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [{ name = "local-secrets contributors" }]
+dependencies = ["click>=8.1,<9", "PyYAML>=6,<7"]
+
+[project.urls]
+Homepage = "https://github.com/cclose/local-secrets"
+
+[project.scripts]
+"local-secrets" = "local_secrets.cli:cli"
+
+[dependency-groups]
+dev = ["build>=1.2", "pytest>=8", "ruff>=0.9"]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
